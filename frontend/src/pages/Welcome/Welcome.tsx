@@ -21,7 +21,6 @@ const Welcome: React.FC = () => {
       </header>
       <main className="welcome-content">
         <h1>Welcome, {user.username}!</h1>
-        <p>Your date of birth is: {user.date_of_birth}</p>
       </main>
     </div>
   );
