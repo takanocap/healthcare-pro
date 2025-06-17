@@ -1,0 +1,56 @@
+name: Deploy to Cloud Run (Dev)
+
+on:
+  push:
+    branches: 
+      - dev
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - id: auth
+      uses: google-github-actions/auth@v1
+      with:
+        credentials_json: '${{ secrets.GCP_SA_KEY }}'
+
+    - name: Set up Google Cloud CLI
+      uses: google-github-actions/setup-gcloud@v1
+      with:
+        project_id: ${{ secrets.GCP_PROJECT_ID }}
+        
+    - name: Docker auth
+      run: |
+        gcloud auth activate-service-account --key-file=-
+        gcloud auth configure-docker ${{ secrets.REGION }}-docker.pkg.dev
+    
+    - name: Build and push backend Docker image(dev)
+      run: |
+        docker build -t ${{ secrets.REGION }}-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/fastapi/fastapi-backend:dev ./backend
+        docker push ${{ secrets.REGION }}-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/fastapi/fastapi-backend:dev
+
+    - name: Build and push frontend Docker image(dev)
+      run: |
+        docker build -t ${{ secrets.REGION }}-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/react/react-frontend:dev ./frontend
+        docker push ${{ secrets.REGION }}-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/react/react-frontend:dev
+
+    - name: Deploy backend to Cloud Run (dev)
+      run: |
+        gcloud run deploy fastapi-backend \
+          --image=${{ secrets.REGION }}-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/fastapi/fastapi-backend:dev \
+          --platform=managed \
+          --region=${{ secrets.GCP_REGION }} \
+          --allow-unauthenticated \
+          
+      
+    - name: Deploy frontend to Cloud Run (dev)
+      run: |
+        gcloud run deploy react-frontend \
+          --image=${{ secrets.REGION }}-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/react/react-frontend:dev \
+          --platform=managed \
+          --region=${{ secrets.GCP_REGION }} \
+          --allow-unauthenticated \

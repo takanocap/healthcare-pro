@@ -1,4 +1,7 @@
 fastapi
 uvicorn
+pydantic
+httpx
 psycopg2-binary
 python-dotenv
+google-cloud-bigquery
