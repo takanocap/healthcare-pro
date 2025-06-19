@@ -2,9 +2,9 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import Login from './pages/Login/Login';
-import Welcome from './pages/Welcome/Welcome';
 import ProtectedRoute from './routes/ProtectedRoute';
 import { isAuthenticated } from './utils/auth';
+import { WelcomePage } from './pages/WelcomePage/WelcomePage';
 
 const App: React.FC = () => {
   return (
@@ -41,7 +41,7 @@ const App: React.FC = () => {
           path="/welcome"
           element={
             <ProtectedRoute>
-              <Welcome />
+              <WelcomePage />
             </ProtectedRoute>
           }
         />
