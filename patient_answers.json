@@ -1,0 +1,5 @@
+{"name": "user_id", "type": "STRING", "mode": "REQUIRED"}
+{"name": "questionnaire_session_id", "type": "STRING", "mode": "NULLABLE"}
+{"name": "question_id", "type": "STRING", "mode": "NULLABLE"}
+{"name": "response_value", "type": "STRING", "mode": "NULLABLE"}
+{"name": "timestamp", "type": "TIMESTAMP", "mode": "REQUIRED"}
