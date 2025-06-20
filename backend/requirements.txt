@@ -1,4 +1,16 @@
 fastapi
-uvicorn
+uvicorn[standard]
+pydantic
+httpx
 psycopg2-binary
 python-dotenv
+google-cloud-bigquery
+sqlalchemy
+python-jose[cryptography]
+PyJWT
+bcrypt
+google-auth
+python-multipart
+google-adk
+pytest
+
