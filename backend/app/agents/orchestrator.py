@@ -47,12 +47,6 @@ class HealthcarePROOrchestrator:
                 patient_data, user_message
             )
 
-        if interaction_type == "trend_analysis":
-            historical_data = await self._get_historical_data(patient_data['id'])
-            return await self.trend_monitor.analyze_trends(
-                patient_data['id'], historical_data
-            )
-
         # Default to companion agent
         return await self.companion.initiate_checkin(patient_data, user_message)
 

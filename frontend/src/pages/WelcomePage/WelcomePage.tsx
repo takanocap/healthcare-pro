@@ -138,33 +138,13 @@ export const WelcomePage: React.FC = () => {
   return (
     <>
     <Box sx={{ flexGrow: 1, minHeight: '100px' }}>
-      {/* AppBar with Logout Button */}
-      {/* <AppBar position="static" elevation={2}>
-        <Toolbar sx={{ justifyContent: 'flex-end' }}>
-          <Button
-            color="inherit"
-            onClick={handleLogout}
-            startIcon={<LogoutOutlined />}
-            sx={{
-              textTransform: 'none',
-              '&:hover': {
-                backgroundColor: 'rgba(255, 255, 255, 0.1)',
-              },
-            }}
-          >
-            Logout
-          </Button>
-        </Toolbar>
-      </AppBar> */}
-      <TopNavBar onLogout={handleLogout} />
-      
+      <TopNavBar onLogout={handleLogout} />      
       <Container maxWidth="md">
         <Box
           sx={{
             display: 'flex',
             justifyContent: 'center',
             alignItems: 'center',
-            // minHeight: 'calc(100vh - 64px)', // Subtract AppBar height
             textAlign: 'center',
           }}
         >
