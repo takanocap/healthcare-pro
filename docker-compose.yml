@@ -1,36 +1,94 @@
 version: '3.9'
 
 services:
-  backend:
-    build: ./backend
-    container_name: fastapi-backend
-    env_file:
-      - ./backend/.env
-    ports:
-      - "8000:8000"
-    depends_on:
-      - db
+  # backend:
+  #   build: ./backend
+  #   restart: always
+  #   container_name: fastapi-backend
+  #   env_file:
+  #     - ./backend/.env
+  #   ports:
+  #     - "8000:8000"
+  #   environment:
+  #     DATABASE_URL: "postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@localhost:5432/${POSTGRES_DB}"
+  #     SECRET_KEY: ${SECRET_KEY}
+  #     WEB_PUSH_VAPID_PUBLIC_KEY: ${WEB_PUSH_VAPID_PUBLIC_KEY}
+  #     WEB_PUSH_VAPID_PRIVATE_KEY: ${WEB_PUSH_VAPID_PRIVATE_KEY}
+  #     WEB_PUSH_VAPID_EMAIL: ${WEB_PUSH_VAPID_EMAIL}
 
-  frontend:
-    build: ./frontend
-    container_name: react-frontend
-    env_file:
-      - ./frontend/.env
-    ports:
-      - "3000:3000"
-    depends_on:
-      - backend
+  #     # Google Cloud
+  #     ADK_API_KEY: ${ADK_API_KEY}
+  #     ADK_API_URL: ${ADK_API_URL}
+  #     # Pub/Sub
+  #     GCP_PROJECT_ID: ${GCP_PROJECT_ID}
+  #     PUBSUB_TOPIC_USER_ONBOARDED: 'user.onboarded'
+  #     PUBSUB_TOPIC_COMPANION_MESSAGE: 'companion.message.send'
+  #     PUBSUB_TOPIC_QUESTIONNAIRE_REQUEST: 'questionnaire.request'
+  #     PUBSUB_TOPIC_QUESTIONNAIRE_COMPLETED: 'questionnaire.completed'
+  #     PUBSUB_TOPIC_CLINICAL_INSIGHT: 'clinical.insight.generated'
+  #     # BigQuery
+  #     PUBSUB_TOPIC_BQ_STREAM: 'bq.data.stream'
+  #     BIGQUERY_DATASET_ID: 'healthcare_pro_dataset'
+  #     BIGQUERY_TABLE_ID_ANSWERS: 'patient_answers'
+  #     BIGQUERY_TABLE_ID_QUESTIONNAIRES: 'questionnaires'
+  #     BIGQUERY_TABLE_ID_CLINICAL_INSIGHTS: 'clinical_insights'
+  #   volumes:
+  #     - ./backend:/app
+  #   depends_on:
+  #     - db
+
+  # frontend:
+  #   build: ./frontend
+  #   restart: always
+  #   container_name: react-frontend
+  #   env_file:
+  #     - ./frontend/.env
+  #   ports:
+  #     - "3000:3000"
+  #   volumes:
+  #     - ./frontend:/app
+  #     - /app/node_modules
+  #   environment:
+  #     NODE_ENV: development
+  #     REACT_APP_BACKEND_URL: http://backend:8000
+  #     REACT_APP_API_URL: ${REACT_APP_API_URL}
+  #     REACT_APP_WEBSOCKET_URL: ${REACT_APP_WEBSOCKET_URL}
+  #     REACT_APP_VAPID_PUBLIC_KEY: ${REACT_APP_VAPID_PUBLIC_KEY}
+
+  #   depends_on:
+  #     - backend
 
   db:
-    image: postgres:latest
+    image: postgres:16
     container_name: postgres-db
     restart: always
-    env_file:
-      - ./db/.env
+    # env_file:
+    #   - ./db/.env
+    environment:
+      POSTGRES_USER: autoagents
+      POSTGRES_PASSWORD: autoagents-25
+      POSTGRES_DB: healthcare_pro_db
     ports:
       - "5432:5432"
     volumes:
       - postgres-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $POSTGRES_USER -d $POSTGRES_DB"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: pgadmin
+    restart: always
+    env_file:
+      - ./db/pgadmin/.env
+    ports:
+      - "5050:80"
+    depends_on:
+      - db
+      
 volumes:
   postgres-data:
     

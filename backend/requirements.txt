@@ -1,4 +1,25 @@
 fastapi
-uvicorn
-psycopg2-binary
+uvicorn[standard]
+python-socketio[asyncio_client]
+sqlalchemy
+asyncpg
+google-cloud-pubsub
+google-cloud-bigquery
+google-cloud-aiplatform
 python-dotenv
+pydantic
+pydantic-settings
+pyjwt
+aiohttp
+google-adk
+psycopg2-binary
+websockets
+
+
+# fastapi
+# uvicorn[standard]
+# python-dotenv
+# python-dotenv
+# pydantic
+# google-cloud-pubsub
+# python-socketio[asyncio_client]
