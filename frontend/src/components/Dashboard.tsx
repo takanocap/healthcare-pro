@@ -17,7 +17,8 @@ const Dashboard: React.FC = () => {
     const { userName, userId, token, logout } = React.useContext(AuthContext);
     const [messages, setMessages] = useState<Message[]>([]);
     const [newMessageText, setNewMessageText] = useState("");
-    const backendUrl = process.env.REACT_APP_BACKEND_URL || "http://localhost:8000";
+    // const backendUrl = process.env.REACT_APP_BACKEND_URL || "http://localhost:8000";
+    const backendUrl =  "http://localhost:8000";
 
     useEffect(() => {
         const fetchHistoricalMessages = async () => {
@@ -85,13 +86,13 @@ const Dashboard: React.FC = () => {
             
         }
     };
-    if(!userName || !userId) {
-        return (
-            <p className="text-center text-gray-700">
-                Please log in to view your dashboard.
-            </p>
-        );
-    }
+    // if(!userName || !userId) {
+    //     return (
+    //         <p className="text-center text-gray-700">
+    //             Please log in to view your dashboard.
+    //         </p>
+    //     );
+    // }
     return (
         <div className="flex flex-col h-full bg-white round-lg shadow-lg overflow-hidden md: max-w-xl md:mx-auto">
             <header className="bg-blue-600 text-white p-4">
