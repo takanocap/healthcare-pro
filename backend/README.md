@@ -4,7 +4,7 @@ This directory contains the FastAPI backend for the PROPER application. It handl
 
 ## 📖 API Documentation
 
-Once the server is running, you can access the interactive API documentation (Swagger UI) at [http://localhost:8080/docs](http://localhost:8080/docs). This interface allows you to explore and test all available endpoints directly from your browser.
+Once the server is running, you can access the interactive API documentation (Swagger UI) at [http://localhost:8000/docs](http://localhost:8000/docs). This interface allows you to explore and test all available endpoints directly from your browser.
 
 ## 📋 Prerequisites
 
