@@ -49,7 +49,7 @@ Edit the `.env` file and set the `DATABASE_URL` to point to your local or cloud 
 The application uses `uvicorn` to run. The `--reload` flag enables hot-reloading for development.
 
 ```bash
-uvicorn app.main:app --host 0.0.0.0 --port 8080 --reload
+uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
 ```
 
 ## ✅ Running Tests
