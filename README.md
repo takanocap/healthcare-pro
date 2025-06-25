@@ -79,7 +79,7 @@ cd proper
 
 ### 2. Configure Environment Variables
 
-This project uses `.env` files for managing environment variables. You will find `.env.example` files in both the `backend/` and `frontend/` directories. Copy them to `.env` (for backend) and `.env.local` (for frontend) and fill in the required values, especially the `DATABASE_URL`.
+This project uses `.env` files for managing environment variables in both the `backend/` and `frontend/` directories. You will need to fill in the required values, especially the `DATABASE_URL`.
 
 ### 3. Running the Application
 
