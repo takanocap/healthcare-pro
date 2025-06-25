@@ -1,4 +1,4 @@
-# PROPER - Backend API
+# Patient Reported Outcomes Multi-Agent System - Backend API
 
 This directory contains the FastAPI backend for the PROPER application. It handles user authentication, agent interactions, and database operations.
 
