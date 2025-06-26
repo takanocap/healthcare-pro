@@ -1,0 +1,53 @@
+/* Full-screen layout */
+.welcome-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background: linear-gradient(to right, #f0f4ff, #e2e8f0);
+  font-family: 'Segoe UI', sans-serif;
+}
+
+/* Top right header */
+.welcome-header {
+  display: flex;
+  justify-content: flex-end;
+  padding: 1rem 2rem;
+  background-color: #ffffff;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Logout button */
+.logout-button {
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  padding: 0.6rem 1.2rem;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.logout-button:hover {
+  background-color: #b02a37;
+}
+
+/* Centered content */
+.welcome-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.welcome-content h1 {
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.welcome-content p {
+  font-size: 1.25rem;
+  color: #555;
+}
